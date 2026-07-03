@@ -2,7 +2,8 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 關鍵修正：加上關鍵的手機縮放視界標籤，防止手機版變形擠壓 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>富貴機械開發有限公司 | 專業精密金屬加工與機械零件製造</title>
     <style>
         /* 基礎樣式與變數 */
@@ -26,106 +27,102 @@
             color: var(--text-dark);
             background-color: var(--bg-light);
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
         }
 
         /* 滿版頁首導覽列 */
         header {
             background-color: #ffffff;
             border-bottom: 3px solid var(--primary-color);
-            padding: 20px 5%;
-            display: block;
+            padding: 15px 5%;
         }
 
         .header-container {
-            display: block;
-            overflow: hidden;
+            width: 100%;
         }
 
         .logo {
-            float: left;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .logo span {
             color: var(--accent-color);
+            font-size: 14px;
+            display: block;
+            letter-spacing: 1px;
+            font-weight: normal;
         }
 
         .nav-links {
-            float: right;
             list-style: none;
-            margin-top: 5px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
         }
 
         .nav-links li {
             display: inline-block;
-            margin-left: 25px;
+            margin: 0 10px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
+            font-size: 14px;
         }
 
         /* 主視覺區 */
         .hero {
             background: linear-gradient(135deg, #2b3a42 0%, #1a252f 100%);
             color: #ffffff;
-            padding: 100px 5%;
+            padding: 60px 20px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         .hero p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
+            font-size: 15px;
+            margin-bottom: 25px;
             color: #bdc3c7;
         }
 
         .btn {
-            display: inline-block;
+            display: block;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
             background-color: var(--accent-color);
             color: white;
-            padding: 12px 35px;
+            padding: 12px 20px;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
             font-size: 16px;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #d35400;
-            transform: translateY(-2px);
+            text-align: center;
         }
 
         /* 區塊通用樣式 */
         section {
-            padding: 80px 10%;
-            display: block;
-            overflow: hidden;
+            padding: 50px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 24px;
             color: var(--primary-color);
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .section-title::after {
@@ -134,99 +131,84 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
+            width: 50px;
+            height: 3px;
             background-color: var(--accent-color);
         }
 
         /* 關於我們 */
         .about-content {
             background-color: #ffffff;
-            padding: 40px;
+            padding: 25px 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border-left: 5px solid var(--accent-color);
-            font-size: 17px;
+            font-size: 15px;
             color: #444;
-            max-width: 900px;
-            margin: 0 auto;
+            text-align: justify;
         }
 
-        /* 營業項目與表格布局 */
-        .services-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* 營業項目與表格布局（手機上自動切換為易讀區塊） */
+        .services-container {
+            margin-top: 10px;
+        }
+
+        .service-card {
             background: #ffffff;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-top: 3px solid var(--primary-color);
         }
 
-        .services-table th {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            text-align: left;
-            padding: 18px;
+        .service-card h3 {
             font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
-        .services-table td {
-            padding: 18px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 16px;
-            vertical-align: top;
-        }
-
-        .services-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .services-table tr:nth-child(even) {
-            background-color: #fcfcfd;
+        .service-card p {
+            font-size: 14px;
+            color: #555;
         }
 
         .service-tag {
             background-color: #edf2f7;
             color: var(--primary-color);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             display: inline-block;
-            margin-top: 8px;
+            margin-top: 10px;
+            margin-right: 5px;
         }
 
         /* 工廠優勢卡片 */
         .features-container {
             width: 100%;
-            margin-top: 20px;
         }
 
         .feature-box {
-            width: 31%;
-            float: left;
-            margin-right: 3.5%;
+            width: 100%;
             background: #ffffff;
-            padding: 30px 20px;
+            padding: 25px 20px;
             border-radius: 6px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             border-top: 3px solid var(--primary-color);
-        }
-
-        .feature-box:last-child {
-            margin-right: 0;
-        }
-
-        .feature-box h3 {
-            font-size: 19px;
-            color: var(--primary-color);
             margin-bottom: 15px;
         }
 
+        .feature-box h3 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
         .feature-box p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-light);
         }
 
@@ -235,16 +217,14 @@
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 40px;
-            max-width: 700px;
-            margin: 0 auto;
+            padding: 25px 20px;
         }
 
         .info-item {
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 15px;
+            font-size: 15px;
             border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
 
         .info-item:last-child {
@@ -256,8 +236,8 @@
         .info-label {
             font-weight: bold;
             color: var(--primary-color);
-            display: inline-block;
-            width: 100px;
+            display: block;
+            margin-bottom: 3px;
         }
 
         /* 頁尾 */
@@ -265,17 +245,34 @@
             background-color: var(--primary-color);
             color: #ffffff;
             text-align: center;
-            padding: 30px;
-            font-size: 14px;
-            margin-top: 50px;
+            padding: 20px;
+            font-size: 13px;
             border-top: 4px solid var(--accent-color);
         }
 
-        /* 清除浮動 */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
+        /* 電腦版 RWD 高階覆蓋擴充 */
+        @media (min-width: 768px) {
+            header { padding: 20px 5%; }
+            .logo { float: left; text-align: left; margin-bottom: 0; font-size: 24px; }
+            .logo span { display: inline; margin-left: 10px; font-size: 14px; }
+            .nav-links { float: right; border-top: none; padding-top: 5px; }
+            .nav-links li { margin-left: 25px; margin-right: 0; }
+            .hero { padding: 100px 5%; }
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 18px; }
+            .btn { display: inline-block; width: auto; }
+            section { padding: 80px 10%; }
+            .section-title { font-size: 28px; }
+            .about-content { font-size: 17px; max-width: 900px; margin: 0 auto; padding: 40px; }
+            .services-container { display: table; width: 100%; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+            .service-card { display: table-row; background: none; box-shadow: none; border-top: none; }
+            .service-card-cell { display: table-cell; padding: 20px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+            .service-card-cell.title { width: 30%; font-weight: bold; font-size: 17px; color: var(--primary-color); background: #fcfcfd; border-right: 1px solid var(--border-color); }
+            .feature-box { width: 31%; float: left; margin-right: 3.5%; margin-bottom: 0; }
+            .feature-box:last-child { margin-right: 0; }
+            .contact-info { max-width: 700px; margin: 0 auto; padding: 40px; }
+            .info-label { display: inline-block; width: 120px; margin-bottom: 0; }
+            .clearfix::after { content: ""; clear: both; display: table; }
         }
     </style>
 </head>
@@ -309,40 +306,35 @@
         </div>
     </section>
 
-    <!-- 營業項目 -->
+    <!-- 營業項目（全面優化為手機卡片、電腦表格雙重適應） -->
     <section id="services" style="background-color: #f0f2f5;">
         <h2 class="section-title">營業項目與服務</h2>
-        <table class="services-table">
-            <thead>
-                <tr>
-                    <th style="width: 30%;">主要項目</th>
-                    <th style="width: 70%;">詳細加工能力與範疇</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>精密五金零件製造與加工</strong></td>
-                    <td>
-                        承接各種銅、鉛、錫、鋁、鐵等金屬材質加工。包含工業用小五金零件、特殊規格螺絲、鉚釘、墊片及各式五金件之製造、代工與買賣業務。
-                        <br><span class="service-tag">小五金買賣</span> <span class="service-tag">車削代工</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>客製化機械與零部件加工</strong></td>
-                    <td>
-                        針對精密機械之核心零部件進行精準加工。廠內配合多元加工製程，能依據客戶提供的工程圖紙進行打樣、量產，確保成品的公差與精密度完全符合工業標準。
-                        <br><span class="service-tag">圖紙打樣</span> <span class="service-tag">零件客製</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>多樣化機台製程協調</strong></td>
-                    <td>
-                        結合傳統與現代工藝，涵蓋剪床、車床、鑽床、銑床、旋臂鑽床、刨床、磨床、織布機等多元機械加工製程，提供從備料、粗加工到精加工的一條龍技術協調。
-                        <br><span class="service-tag">專業剪床</span> <span class="service-tag">車銑鑽磨</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="services-container">
+            <!-- 項目 1 -->
+            <div class="service-card clearfix">
+                <div class="service-card-cell title">精密五金零件製造與加工</div>
+                <div class="service-card-cell">
+                    <p>承接各種銅、鉛、錫、鋁、鐵等金屬材質加工。包含工業用小五金零件、特殊規格螺絲、鉚釘、墊片及各式五金件之製造、代工與買賣業務。</p>
+                    <span class="service-tag">小五金買賣</span> <span class="service-tag">車削代工</span>
+                </div>
+            </div>
+            <!-- 項目 2 -->
+            <div class="service-card clearfix">
+                <div class="service-card-cell title">客製化機械與零部件加工</div>
+                <div class="service-card-cell">
+                    <p>針對精密機械之核心零部件進行精準加工。廠內配合多元加工製程，能依據客戶提供的工程圖紙進行打樣、量產，確保成品的公差與精密度完全符合工業標準。</p>
+                    <span class="service-tag">圖紙打樣</span> <span class="service-tag">零件客製</span>
+                </div>
+            </div>
+            <!-- 項目 3 -->
+            <div class="service-card clearfix">
+                <div class="service-card-cell title">多樣化機台製程協調</div>
+                <div class="service-card-cell">
+                    <p>結合傳統與現代工藝，涵蓋剪床、車床、鑽床、銑床、旋臂鑽床、刨床、磨床、織布機等多元機械加工製程，提供從備料、粗加工到精加工的一條龍技術協調。</p>
+                    <span class="service-tag">專業剪床</span> <span class="service-tag">車銑鑽磨</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- 核心優勢 -->
@@ -351,7 +343,7 @@
         <div class="features-container clearfix">
             <div class="feature-box">
                 <h3>嚴格品管</h3>
-                <p>從金屬材料源源篩選，到出廠前的尺寸微米級檢驗，我們嚴格把關每一道加工工序，確保交到客戶手中的皆為良品。</p>
+                <p>從金屬材料源頭篩選，到出廠前的尺寸微米級檢驗，我們嚴格把關每一道加工工序，確保交到客戶手中的皆為良品。</p>
             </div>
             <div class="feature-box">
                 <h3>設備齊全</h3>
@@ -374,7 +366,7 @@
             </div>
             <div class="info-item">
                 <span class="info-label">聯絡電話</span>
-                <span style="font-weight: bold; color: var(--primary-color);">(02) 8287-6418</span>
+                <span style="font-weight: bold; color: #e67e22; font-size: 18px;">(02) 8287-6418</span>
             </div>
             <div class="info-item">
                 <span class="info-label">營業時間</span>
